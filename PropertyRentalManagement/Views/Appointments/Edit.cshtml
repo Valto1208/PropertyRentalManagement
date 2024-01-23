@@ -1,0 +1,57 @@
+﻿@model PropertyRentalManagement.Models.Appointment
+
+@{
+    ViewData["Title"] = "Edit";
+    int UserType = Convert.ToInt32(Context.Request.Cookies["UserType"]);
+}
+
+<h1>Manage</h1>
+
+<h4>Appointments</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AppointmentId" />
+            <div class="form-group">
+                <label asp-for="ManagerId" class="control-label"></label>
+                <select asp-for="ManagerId" class="form-control" asp-items="ViewBag.ManagerId"></select>
+                <span asp-validation-for="ManagerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenantId" class="control-label"></label>
+                <select asp-for="TenantId" class="form-control" asp-items="ViewBag.TenantId"></select>
+                <span asp-validation-for="TenantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppDateTime" class="control-label"></label>
+                <input asp-for="AppDateTime" class="form-control" />
+                <span asp-validation-for="AppDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
+                <span asp-validation-for="StatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @if (UserType == 1)
+    {
+        @Html.ActionLink("return to Owner Page", "OwnerView", "Home")
+    }
+    else if (UserType == 2)
+    {
+        @Html.ActionLink("Return to manager page", "ManagerView", "Home")
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

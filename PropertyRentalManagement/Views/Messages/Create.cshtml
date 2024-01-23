@@ -1,0 +1,52 @@
+﻿@model PropertyRentalManagement.Models.Message
+
+@{
+    ViewData["Title"] = "Create";
+    int UserType = Convert.ToInt32(Context.Request.Cookies["UserType"]);
+}
+
+<h1>Send a new message</h1>
+
+<h4>@ViewData["Message"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReceiverId" class="control-label">Receiver</label>
+                <select asp-for="ReceiverId" class="form-control" asp-items="ViewBag.TenantId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+
+    <td>
+        @if (UserType == 1)
+        {
+            @Html.ActionLink("return to Owner Page", "OwnerView", "Home")
+        }
+        else if (UserType ==2 )
+        {
+            @Html.ActionLink("Return to manager page", "ManagerView", "Home")
+        }
+        else
+        {
+            @Html.ActionLink("Return", "TenantView", "Appartments")
+        }
+     </td>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

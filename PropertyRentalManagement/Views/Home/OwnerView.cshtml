@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "OwnerView";
+}
+
+<h1>Welcome To The Owner View</h1>
+
+
+<div>
+    <h4>Choose what you want to do:</h4>
+    <hr />
+    <dl class="row">
+        <db class="col-sm-2">
+            @Html.ActionLink("Manage Buildings", "Index", "Buildings")
+        </db>
+        <db class="col-sm-2">
+            @Html.ActionLink("Manage Apartments", "Index", "Appartments")
+        </db>
+        <db class="col-sm-2">
+            @Html.ActionLink("Manage Appointments", "Index", "Appointments")
+        </db>
+        <db class="col-sm-2">
+            @Html.ActionLink("Manage Users", "Index", "Users")
+        </db>
+        <db class="col-sm-2">
+            @Html.ActionLink("Message Inbox", "Index", "Messages")
+        </db>
+    </dl>
+</div>
+
+
+

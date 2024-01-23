@@ -1,0 +1,90 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Appartment>
+
+@{
+    ViewData["Title"] = "Index";
+    var imagePath = "~/Assets/richmond-apartments-for-sale.jpg";
+}
+
+<h1>Manage Appartments</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Appartment Preview
+            </th>
+            <th>
+                Apartment Number
+            </th>
+            <th>
+                Size
+            </th>
+            <th>
+                Monthly Rent $
+            </th>
+            <th>
+                Number Of Rooms
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Building)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    <img src="@Url.Content(imagePath)" alt="Appartment" style="width: 75px; height: 75px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AptNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AptSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AptRent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AptNumberOfRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AptDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.BuildingName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ApartmentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ApartmentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ApartmentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

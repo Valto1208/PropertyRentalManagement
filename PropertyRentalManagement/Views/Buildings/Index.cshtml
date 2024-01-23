@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Building>
+
+@{
+    ViewData["Title"] = "Index";
+    var imagePath = "~/Assets/buildings.jpg";
+}
+
+<h1>Buildings:</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Building View
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    <img src="@Url.Content(imagePath)" alt="Building" style="width: 100px; height: 100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BuildingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BuildingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BuildingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+
+</table>

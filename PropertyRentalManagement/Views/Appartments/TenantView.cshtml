@@ -1,0 +1,109 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Appartment>
+
+@{
+    ViewData["Title"] = "TenantView";
+    var imagePath = "~/Assets/richmond-apartments-for-sale.jpg";
+}
+
+<h1>Welcome To PRM!</h1>
+
+<form method="post">
+    <p>
+        Max Rent : <input type="number" id="Rent" name="Rent" step=".01" />
+        Number of rooms : <input type="number" id="numberOfRooms" name="numberOfRooms" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Appartment Preview
+            </th>
+            <th>
+                Appartment Number
+            </th>
+            <th>
+                Apartment Size (Meters)
+            </th>
+            <th>
+                Monthly Rent $
+            </th>
+            <th>
+                Number of Rooms
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Building
+            </th>
+            <th>
+                Manager
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                @if (item.StatusId == 1)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Url.Content(imagePath)" alt="Appartment" style="width: 100px; height: 100px"/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AptNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AptSize)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AptRent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AptNumberOfRooms)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AptDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Building.BuildingName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Manager.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Schedule an appointment", "Create", "Appointments");
+                        </td>
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <td>No data available</td>
+        }
+    </tbody>
+</table>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="row">
+        <db class="col-sm-2">
+            @Html.ActionLink("Send New Message", "Create", "Messages")
+        </db>
+        <db class="col-sm-2">
+            @Html.ActionLink("Message Inbox", "Index", "Messages")
+        </db>
+    </dl>
+</div>
+
+
+
+
